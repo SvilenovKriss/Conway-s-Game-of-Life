@@ -1,0 +1,11 @@
+<table class="grid">
+    <tr *ngFor="let row of grid; index as i">
+        <td (click)="addCell(i,j)" *ngFor="let col of row; index as j" [className]="col === 1 ? 'black-square' : 'white-square'">
+        </td>
+    </tr>
+</table>
+<div class="buttons">
+    <button (click)="startGame()">Start</button>
+    <button (click)="stop()">Stop</button>
+    <button (click)="reset()">Reset</button>
+</div>

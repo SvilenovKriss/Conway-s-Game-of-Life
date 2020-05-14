@@ -1,0 +1,24 @@
+.grid, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    cursor: pointer;
+}
+
+.grid {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    background-color: white;
+}
+
+.square {
+    width: 20px;
+    height: 20px;
+}
+
+.black-square {
+    background-color: black;
+}
