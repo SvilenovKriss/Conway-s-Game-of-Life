@@ -1,24 +1,57 @@
+.grid-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .grid, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
 td {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .grid {
-    width: 400px;
-    height: 400px;
-    margin: auto;
-    background-color: white;
+  width: 500px;
+  height: 400px;
+  background-color: white;
 }
 
 .square {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .black-square {
-    background-color: black;
+  background-color: black;
+}
+
+.speed {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin: 0 5px;
+}
+
+.plus-btn,
+.minus-btn {
+  background: none;
+  border: none;
+  font-size: 35px;
+  font-family: monospace;
+  text-align: center;
+  color: #5a5a5a;
+  cursor: pointer;
+  outline: none;
+}
+
+.plus-btn:hover {
+  color: #323232;
+}
+
+.minus-btn:hover {
+  color: #323232;
 }

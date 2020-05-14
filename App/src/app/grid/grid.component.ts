@@ -8,25 +8,26 @@ import * as constants from '../../constants';
   styleUrls: ['./grid.component.css']
 })
 export class GridComponent implements OnInit {
-  public grid: any;
+  public grid: Array<number[]>;
   public interval: any;
+  public speed: number = 100;
 
   ngOnInit(): void {
     this.grid = this.createGrid();
   }
 
-  public createGrid() {
+  public createGrid(): Array<number[]> {
     let arr = new Array(constants.rows);
     for(let i = 0; i < constants.cols; i++) {
       arr[i] = new Array(constants.cols);
       for (let j = 0; j < constants.rows; j++) {
-        arr[i][j] = 0;        
+        arr[i][j] = 0//Math.floor(Math.random() * 2);
       }
     }
     return arr;
   }
 
-  public startGame() {
+  public startGame():void {
     this.interval = setInterval(() => {
       const nextGrid = this.createGrid();
 
@@ -47,7 +48,7 @@ export class GridComponent implements OnInit {
         }
       }
       this.grid = nextGrid;
-    }, 300);
+    }, this.speed);
   }
 
   private countneighbours(row: number, col: number): number {
@@ -55,11 +56,8 @@ export class GridComponent implements OnInit {
      for(let i = row-1; i<=row+1; i++){
        for(let j= col-1; j<=col+1; j++){
          if((i != row || j!=col) && this.grid[i] && this.grid[i][j]){
-          //  The example of the first condition: (0 != 0 || 1!=0) so..
-          //if it's false the first it will go to the second one 1!=0.
-          //And with this check it wont count mu self as a neighbor.
            if(this.grid[i][j] === 1){
-             count++;;
+             count++;
            }
          }
        }
@@ -70,14 +68,29 @@ export class GridComponent implements OnInit {
   public addCell(i: number, j: number): void {
     const cell = this.grid[i][j];
     this.grid[i][j] = cell === 1 ? 0 : 1;
-    console.log(this.countneighbours(i,j));
   }
 
-  public reset() {
+  public resetGame(): void {
     this.grid = this.createGrid();
   }
 
-  public stop() {
+  public stopGame(): void {
     clearInterval(this.interval);
+  }
+
+  public inreaseSpeed(): void {
+    if(this.speed-100 >= constants.maxSpeed) {
+      this.speed-=100;
+      this.stopGame();
+      this.startGame();
+    }
+  }
+  
+  public decreaseSpeed(): void {
+    if(this.speed+100 <= constants.minSpeed) {
+      this.speed+=100
+      this.stopGame();
+      this.startGame();
+    }
   }
 }

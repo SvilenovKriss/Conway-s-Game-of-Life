@@ -1,11 +1,22 @@
-<table class="grid">
+<div class="grid-wrapper">
+  <table class="grid">
     <tr *ngFor="let row of grid; index as i">
-        <td (click)="addCell(i,j)" *ngFor="let col of row; index as j" [className]="col === 1 ? 'black-square' : 'white-square'">
+      <td
+      class="square"
+      (click)="addCell(i,j)"
+      *ngFor="let col of row; index as j"
+      [className]="col === 1 ? 'black-square' : 'white-square'">
         </td>
-    </tr>
-</table>
-<div class="buttons">
-    <button (click)="startGame()">Start</button>
-    <button (click)="stop()">Stop</button>
-    <button (click)="reset()">Reset</button>
+      </tr>
+    </table>
+    <div class="speed">
+      <h3 class="label">Speed:</h3>
+      <a (click)="inreaseSpeed()" class="plus-btn">+</a>
+      <a (click)="decreaseSpeed()" class="minus-btn">-</a>
+    </div>
 </div>
+    <app-buttons
+    (startGame)="startGame()"
+    (stopGame)="stopGame()"
+    (resetGame)="resetGame()">
+  </app-buttons>

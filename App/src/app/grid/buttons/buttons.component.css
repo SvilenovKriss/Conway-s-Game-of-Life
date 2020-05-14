@@ -1,0 +1,9 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.mat-stroked-button {
+  margin-right: 10px;
+}
