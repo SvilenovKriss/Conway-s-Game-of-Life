@@ -9,9 +9,9 @@ import * as constants from '../../constants';
 })
 export class GridComponent implements OnInit {
   public grid: Array<number[]>;
-  public interval: any;
-  public speed: number = 100;
+  public speed: number = constants.maxSpeed;
   public gameStarted: boolean = false;
+  public interval;
 
   ngOnInit(): void {
     this.grid = this.createGrid();
@@ -20,17 +20,15 @@ export class GridComponent implements OnInit {
   public createGrid(): Array<number[]> {
     let arr = new Array(constants.rows);
     for(let i = 0; i < constants.cols; i++) {
-      arr[i] = new Array(constants.cols);
-      for (let j = 0; j < constants.rows; j++) {
-        arr[i][j] = 0;
-      }
+      arr[i] = new Array(constants.cols).fill(0);
     }
     return arr;
   }
 
-  public startGame():void {
+  public startGame(): void {
     this.gameStarted = true;
     this.interval = setInterval(() => {
+      console.log(typeof this.interval)
       const nextGrid = this.createGrid();
 
       for(let i = 0; i < constants.rows; i++) {
@@ -67,9 +65,9 @@ export class GridComponent implements OnInit {
      return neighbours;
   }
 
-  public addCell(i: number, j: number): void {
-    const cell = this.grid[i][j];
-    this.grid[i][j] = cell === 1 ? 0 : 1;
+  public addCell(row: number, col: number): void {
+    const cell = this.grid[row][col];
+    this.grid[row][col] = cell === 1 ? 0 : 1;
   }
 
   public resetGame(): void {
@@ -82,22 +80,26 @@ export class GridComponent implements OnInit {
   }
 
   public inreaseSpeed(): void {
-    if(this.speed-100 >= constants.maxSpeed && this.gameStarted) {
+    if(this.speed-100 >= constants.maxSpeed) {
       this.speed-=100;
-      setTimeout(() => {
-        this.stopGame();
-        this.startGame();
-      }, 100);
+      if(this.gameStarted) {
+        setTimeout(() => {
+          this.stopGame();
+          this.startGame();
+        }, 300);
+      }
     }
   }
   
   public decreaseSpeed(): void {
     if(this.speed+100 <= constants.minSpeed && this.gameStarted) {
       this.speed+=100;
-      setTimeout(() => {
-        this.stopGame();
-        this.startGame();
-      }, 100);
+      if(this.gameStarted) {
+        setTimeout(() => {
+          this.stopGame();
+          this.startGame();
+        }, 300);
+      }
     }
   }
 }

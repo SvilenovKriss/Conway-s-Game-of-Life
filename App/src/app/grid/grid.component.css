@@ -4,28 +4,24 @@
 }
 
 .grid, th, td {
-  border: 1px solid black;
+  border: 1px solid #000000;
   border-collapse: collapse;
-}
-
-td {
-  cursor: pointer;
 }
 
 .grid {
   width: 500px;
   height: 400px;
-  background-color: white;
+  background-color: #ffffff;
 }
 
-.square {
+td {
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .black-square {
-  background-color:  #262626
-  ;
+  background-color: #4C4C4C;
 }
 
 .speed {
@@ -39,12 +35,12 @@ td {
 
 .plus-btn,
 .minus-btn {
-  background: none;
-  border: none;
   font-size: 35px;
   font-family: monospace;
   text-align: center;
   color: #5a5a5a;
+  background: none;
+  border: none;
   cursor: pointer;
   outline: none;
 }

@@ -7,7 +7,6 @@ import { MatButtonModule} from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { GridComponent } from './grid/grid.component';
 import { ButtonsComponent } from './grid/buttons/buttons.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
